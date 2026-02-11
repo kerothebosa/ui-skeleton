@@ -3,6 +3,7 @@
 Framework-agnostic TypeScript library scaffold for enhancing network-driven UIs with skeleton loaders.
 
 Full project docs live in `docs/README.md`.
+For real app validation, use `docs/real-world-testing.md`.
 
 ## Status
 

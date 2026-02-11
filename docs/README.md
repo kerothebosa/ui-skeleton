@@ -9,7 +9,8 @@ This folder contains implementation-focused documentation for `@skeleton-ui/net`
 3. `api-reference.md`
 4. `interceptors.md`
 5. `testing.md`
-6. `contributing.md`
+6. `real-world-testing.md`
+7. `contributing.md`
 
 ## Quick Links
 
@@ -18,6 +19,7 @@ This folder contains implementation-focused documentation for `@skeleton-ui/net`
 - Lifecycle and event semantics: `docs/lifecycle-and-events.md`
 - Interceptor internals: `docs/interceptors.md`
 - Test strategy and fixture routes: `docs/testing.md`
+- Real application validation: `docs/real-world-testing.md`
 - Contributor workflow: `docs/contributing.md`
 
 ## Production Release Checklist
