@@ -1,0 +1,56 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@skeleton-ui/net - Delayed API Fixture</title>
+    <link rel="stylesheet" href="/dist/styles.css" />
+    <link rel="stylesheet" href="/tests/fixtures/basic/styles.css" />
+    <style>
+      .actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 8px;
+        margin-bottom: 12px;
+      }
+
+      button {
+        border: none;
+        border-radius: 8px;
+        padding: 10px 14px;
+        background: #0f172a;
+        color: #ffffff;
+        cursor: pointer;
+      }
+
+      button:hover {
+        background: #1e293b;
+      }
+
+      #status {
+        margin-top: 8px;
+        color: #0f172a;
+        font-weight: 600;
+      }
+    </style>
+  </head>
+  <body>
+    <main class="fixture-root">
+      <h1>Delayed API Fixture</h1>
+      <p>Used by Playwright to assert skeleton show/hide behavior around delayed requests.</p>
+      <div class="actions">
+        <button id="load-data">Load Data</button>
+        <button id="load-error">Load Error</button>
+        <button id="load-many">Load 3x</button>
+        <button id="load-fast">Load Fast</button>
+        <button id="load-timeout">Load Timeout</button>
+        <button id="load-mixed">Load Mixed</button>
+        <button id="stop-during-request">Stop During Request</button>
+      </div>
+      <section id="content" data-skeleton-visible="false">
+        <p id="status">Idle</p>
+      </section>
+    </main>
+    <script type="module" src="/tests/fixtures/delayed-api/app.js"></script>
+  </body>
+</html>
