@@ -4,6 +4,7 @@ Framework-agnostic TypeScript library scaffold for enhancing network-driven UIs 
 
 Full project docs live in `docs/README.md`.
 For real app validation, use `docs/real-world-testing.md`.
+For local browser QA, use `docs/playground.md`.
 
 ## Status
 
@@ -14,7 +15,7 @@ This repository is a production-ready template scaffold:
 - Jest unit tests and Playwright E2E fixtures
 - GitHub Actions for CI and npm publishing
 
-Core skeleton behavior is intentionally minimal so implementation can evolve safely.
+Core skeleton behavior includes adaptive placeholder rendering with overlay fallback.
 
 ## Installation
 
@@ -38,7 +39,11 @@ import "@skeleton-ui/net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#content",
-  overlayClassName: "sknet-skeleton-overlay",
+  skeletonVisuals: {
+    mode: "hybrid",
+    animation: "wave",
+    theme: "cool"
+  },
   timeoutMode: "abort",
   showDelayMs: 120,
   minVisibleMs: 180,
@@ -59,6 +64,28 @@ type SkeletonEnhancerOptions = {
   skeletonSelector?: string;
   skeletonClassName?: string;
   overlayClassName?: string;
+  skeletonVisuals?: {
+    mode?: "overlay" | "adaptive" | "hybrid";
+    animation?: "shimmer" | "wave" | "pulse" | "breathe" | "none";
+    theme?:
+      | "classic"
+      | "cool"
+      | "warm"
+      | "contrast"
+      | {
+          baseColor: string;
+          highlightColor: string;
+          durationMs?: number;
+          easing?: string;
+        };
+    adaptive?: {
+      maxDepth?: number;
+      maxPlaceholders?: number;
+      minBlockHeightPx?: number;
+      lineGapPx?: number;
+      ignoreSelectors?: string[];
+    };
+  };
   requestTimeoutMs?: number;
   timeoutMode?: "abort" | "synthetic";
   showDelayMs?: number;
@@ -96,6 +123,8 @@ class SkeletonEnhancer {
 | Script                | Purpose                                        |
 | --------------------- | ---------------------------------------------- |
 | `npm run build`       | Build `dist/` as ESM + CJS + declaration files |
+| `npm run playground`  | Build package and start local playground server |
+| `npm run playground:start` | Start playground server (expects built `dist/`) |
 | `npm run build:watch` | Build in watch mode                            |
 | `npm run lint`        | Run ESLint with zero warnings                  |
 | `npm run typecheck`   | Run strict TypeScript checks                   |
@@ -116,6 +145,12 @@ E2E tests:
 
 ```bash
 npm run test:e2e
+```
+
+Playground manual QA:
+
+```bash
+npm run playground
 ```
 
 ## Publishing

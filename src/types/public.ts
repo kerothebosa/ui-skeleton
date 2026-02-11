@@ -1,6 +1,9 @@
 export type BuiltinInterceptorName = "fetch" | "xhr";
 export type SkeletonRequestSource = BuiltinInterceptorName | string;
 export type TimeoutMode = "abort" | "synthetic";
+export type SkeletonRenderMode = "overlay" | "adaptive" | "hybrid";
+export type SkeletonAnimationPreset = "shimmer" | "wave" | "pulse" | "breathe" | "none";
+export type SkeletonThemePreset = "classic" | "cool" | "warm" | "contrast";
 
 export type RequestFilterContext = {
   url: string;
@@ -55,6 +58,28 @@ export type SkeletonEnhancerHooks = {
   onError?: SkeletonEventHandler<"error">;
 };
 
+export type SkeletonAdaptiveOptions = {
+  maxDepth?: number;
+  maxPlaceholders?: number;
+  minBlockHeightPx?: number;
+  lineGapPx?: number;
+  ignoreSelectors?: string[];
+};
+
+export type SkeletonThemeCustom = {
+  baseColor: string;
+  highlightColor: string;
+  durationMs?: number;
+  easing?: string;
+};
+
+export type SkeletonVisualsOptions = {
+  mode?: SkeletonRenderMode;
+  animation?: SkeletonAnimationPreset;
+  theme?: SkeletonThemePreset | SkeletonThemeCustom;
+  adaptive?: SkeletonAdaptiveOptions;
+};
+
 export type SkeletonEnhancerOptions = {
   skeletonSelector?: string;
   skeletonClassName?: string;
@@ -65,6 +90,7 @@ export type SkeletonEnhancerOptions = {
   minVisibleMs?: number;
   enabledInterceptors?: BuiltinInterceptorName[];
   shouldHandleRequest?: (ctx: RequestFilterContext) => boolean;
+  skeletonVisuals?: SkeletonVisualsOptions;
   debug?: boolean;
   hooks?: SkeletonEnhancerHooks;
 };

@@ -25,6 +25,11 @@ import "@skeleton-ui/net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#app-content",
+  skeletonVisuals: {
+    mode: "hybrid",
+    animation: "wave",
+    theme: "cool"
+  },
   timeoutMode: "abort",
   showDelayMs: 120,
   minVisibleMs: 180,
@@ -88,3 +93,18 @@ npm run pack:check
 ```
 
 Then re-test the installed tarball in a real app once more.
+
+## 7) Playground Comparison Pass (Recommended)
+
+Run side-by-side manual QA before publish:
+
+```bash
+npm run playground
+```
+
+Then validate route scenarios at `http://127.0.0.1:4174/#/overview`:
+
+1. `with package` side shows skeletons/animations
+2. `without package` side remains blank/pop-in during loading
+3. overview preset/config changes affect all tabs
+4. config bootstrapping works from URL (`?config=/config/default.json`)

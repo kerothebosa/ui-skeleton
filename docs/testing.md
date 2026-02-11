@@ -28,6 +28,7 @@
 
 - Unit: `npm run test`
 - E2E: `npm run test:e2e`
+- Playground smoke: `npm run playground`
 - Full pipeline: `npm run ci`
 - Pack validation: `npm run pack:check`
 
@@ -48,3 +49,9 @@ Jest enforces minimum global thresholds:
 - branches: `70`
 - functions: `80`
 - lines: `80`
+
+## Regression Cases To Keep
+
+- `skeleton:show` must always correspond to a rendered skeleton node.
+- Adaptive mode must tolerate empty/malformed `ignoreSelectors`.
+- When adaptive rendering cannot derive placeholders, overlay fallback must still render.

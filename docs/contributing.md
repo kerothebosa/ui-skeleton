@@ -12,6 +12,7 @@
 3. Keep public API updates documented in:
    - `README.md`
    - `docs/api-reference.md`
+   - `docs/playground.md` (when playground config or scenarios change)
 
 ## Engineering Expectations
 

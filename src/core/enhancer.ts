@@ -12,12 +12,18 @@ import type { EnhancerLifecycleState } from "../types/internal";
 import type {
   BuiltinInterceptorName,
   NetworkInterceptor,
+  SkeletonAdaptiveOptions,
+  SkeletonAnimationPreset,
   SkeletonEnhancerEventMap,
   SkeletonEnhancerHooks,
   SkeletonEnhancerOptions,
+  SkeletonRenderMode,
   SkeletonEventHandler,
   SkeletonEventName,
   SkeletonRequestSource,
+  SkeletonThemeCustom,
+  SkeletonThemePreset,
+  SkeletonVisualsOptions,
   TimeoutMode
 } from "../types/public";
 import { isBrowserEnvironment } from "../utils/guards";
@@ -54,8 +60,35 @@ type ResolvedEnhancerOptions = {
   minVisibleMs: number;
   enabledInterceptors: BuiltinInterceptorName[];
   debug: boolean;
+  skeletonVisuals: {
+    mode: SkeletonRenderMode;
+    animation: SkeletonAnimationPreset;
+    theme: SkeletonThemePreset | SkeletonThemeCustom;
+    adaptive: Required<SkeletonAdaptiveOptions>;
+  };
   hooks?: SkeletonEnhancerHooks;
   shouldHandleRequest?: SkeletonEnhancerOptions["shouldHandleRequest"];
+};
+
+const DEFAULT_SKELETON_VISUALS: ResolvedEnhancerOptions["skeletonVisuals"] = {
+  mode: "hybrid",
+  animation: "shimmer",
+  theme: "classic",
+  adaptive: {
+    maxDepth: 4,
+    maxPlaceholders: 72,
+    minBlockHeightPx: 8,
+    lineGapPx: 5,
+    ignoreSelectors: [
+      "[data-skeleton-node]",
+      "script",
+      "style",
+      "noscript",
+      "template",
+      "iframe",
+      "canvas"
+    ]
+  }
 };
 
 const DEFAULT_OPTIONS: ResolvedEnhancerOptions = {
@@ -67,7 +100,28 @@ const DEFAULT_OPTIONS: ResolvedEnhancerOptions = {
   showDelayMs: 120,
   minVisibleMs: 180,
   enabledInterceptors: ["fetch", "xhr"],
+  skeletonVisuals: DEFAULT_SKELETON_VISUALS,
   debug: false
+};
+
+const resolveSkeletonVisuals = (
+  visuals: SkeletonVisualsOptions | undefined
+): ResolvedEnhancerOptions["skeletonVisuals"] => {
+  return {
+    mode: visuals?.mode ?? DEFAULT_SKELETON_VISUALS.mode,
+    animation: visuals?.animation ?? DEFAULT_SKELETON_VISUALS.animation,
+    theme: visuals?.theme ?? DEFAULT_SKELETON_VISUALS.theme,
+    adaptive: {
+      maxDepth: visuals?.adaptive?.maxDepth ?? DEFAULT_SKELETON_VISUALS.adaptive.maxDepth,
+      maxPlaceholders:
+        visuals?.adaptive?.maxPlaceholders ?? DEFAULT_SKELETON_VISUALS.adaptive.maxPlaceholders,
+      minBlockHeightPx:
+        visuals?.adaptive?.minBlockHeightPx ?? DEFAULT_SKELETON_VISUALS.adaptive.minBlockHeightPx,
+      lineGapPx: visuals?.adaptive?.lineGapPx ?? DEFAULT_SKELETON_VISUALS.adaptive.lineGapPx,
+      ignoreSelectors:
+        visuals?.adaptive?.ignoreSelectors ?? DEFAULT_SKELETON_VISUALS.adaptive.ignoreSelectors
+    }
+  };
 };
 
 export class SkeletonEnhancer {
@@ -84,6 +138,7 @@ export class SkeletonEnhancer {
     this.options = {
       ...DEFAULT_OPTIONS,
       ...options,
+      skeletonVisuals: resolveSkeletonVisuals(options.skeletonVisuals),
       enabledInterceptors: options.enabledInterceptors
         ? [...options.enabledInterceptors]
         : [...DEFAULT_OPTIONS.enabledInterceptors]
@@ -93,7 +148,8 @@ export class SkeletonEnhancer {
     this.skeletonManager = new SkeletonManager({
       selector: this.options.skeletonSelector,
       className: this.options.skeletonClassName,
-      overlayClassName: this.options.overlayClassName
+      overlayClassName: this.options.overlayClassName,
+      visuals: this.options.skeletonVisuals
     });
 
     this.networkSubscriber = {
@@ -154,6 +210,7 @@ export class SkeletonEnhancer {
     this.stop();
     this.bus.removeAll();
     this.clearRequestTracking();
+    this.skeletonManager.dispose();
     this.state = LifecycleState.DESTROYED;
     this.logger.debug("Enhancer destroyed");
   }

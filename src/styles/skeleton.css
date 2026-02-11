@@ -9,6 +9,18 @@
   animation: sknet-shimmer 1.1s linear infinite;
 }
 
+.sknet-skeleton-overlay[data-skeleton-mode="adaptive"] {
+  background: transparent;
+}
+
+.sknet-skeleton-overlay .sknet-adaptive-block {
+  position: absolute;
+  border-radius: 8px;
+  background: linear-gradient(90deg, #e8ecf1 25%, #f7f9fb 50%, #e8ecf1 75%);
+  background-size: 300% 100%;
+  animation: sknet-shimmer 1.1s linear infinite;
+}
+
 @keyframes sknet-shimmer {
   0% {
     background-position: 100% 0;

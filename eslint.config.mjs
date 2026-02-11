@@ -71,5 +71,11 @@ export default [
       "no-console": "off"
     }
   },
+  {
+    files: ["playground/**/*.ts"],
+    rules: {
+      "@typescript-eslint/ban-ts-comment": "off"
+    }
+  },
   eslintConfigPrettier
 ];

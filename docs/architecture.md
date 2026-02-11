@@ -8,7 +8,8 @@
   - `global-patch-registry.ts`: shared global monkey-patch ownership for `fetch` and `XMLHttpRequest`.
   - `fetch-interceptor.ts`, `xhr-interceptor.ts`: subscribe/unsubscribe wrappers around registry.
 - `src/dom/`
-  - `skeleton-manager.ts`: skeleton node show/hide/cleanup behavior.
+  - `skeleton-manager.ts`: skeleton node show/hide/cleanup behavior with adaptive placeholder generation.
+  - `style-registry.ts`: runtime CSS variable/keyframe generation for visual presets.
 - `src/styles/`
   - `skeleton.css`: published default overlay styles consumed by `@skeleton-ui/net/styles.css`.
 - `src/orchestrator/`
@@ -27,13 +28,21 @@
    - minimum visible duration (`minVisibleMs`)
 4. `SkeletonEnhancer` emits typed library events through `EventBus`.
 5. `SkeletonManager` mutates DOM state and overlay node.
+6. Style registry resolves animation/theme tokens and injects instance-scoped CSS.
+
+Adaptive rendering safety:
+
+- adaptive candidate scanning tolerates empty/invalid selector lists
+- if adaptive placeholder generation fails, manager falls back to overlay mode instead of dropping the skeleton node
+- this keeps `skeleton:show` and visible DOM state consistent under bad config input
 
 ## Styling Contract
 
 - Runtime only injects DOM nodes and class names.
-- Visual appearance is provided by the shipped stylesheet: `@skeleton-ui/net/styles.css`.
+- Visual appearance uses both shipped stylesheet (`@skeleton-ui/net/styles.css`) and runtime-generated CSS.
 - Consumers can override by:
   - setting `overlayClassName`, and/or
+  - setting `skeletonVisuals` (mode, animation, theme, adaptive scanning), and/or
   - overriding CSS in their own stylesheet.
 
 ## Multi-Instance Safety

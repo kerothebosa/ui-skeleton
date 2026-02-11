@@ -1,0 +1,23 @@
+{
+  "schema": "@skeleton-ui/net/playground-config",
+  "version": 1,
+  "playgroundConfig": {
+    "showDelayMs": 120,
+    "minVisibleMs": 180,
+    "requestTimeoutMs": 10000,
+    "timeoutMode": "abort",
+    "enabledInterceptors": ["fetch", "xhr"],
+    "skeletonVisuals": {
+      "mode": "hybrid",
+      "animation": "shimmer",
+      "theme": "classic",
+      "adaptive": {
+        "maxDepth": 4,
+        "maxPlaceholders": 180,
+        "minBlockHeightPx": 12,
+        "lineGapPx": 6,
+        "ignoreSelectors": []
+      }
+    }
+  }
+}

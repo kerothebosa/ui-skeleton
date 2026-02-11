@@ -16,6 +16,6 @@
     "verbatimModuleSyntax": true,
     "types": ["node", "jest"]
   },
-  "include": ["src", "tests", "examples", "jest.config.ts", "playwright.config.ts"],
+  "include": ["src", "tests", "examples", "playground", "jest.config.ts", "playwright.config.ts"],
   "exclude": ["dist", "node_modules", "coverage"]
 }

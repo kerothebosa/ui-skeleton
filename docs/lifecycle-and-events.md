@@ -22,6 +22,11 @@
 4. `request:end` emitted once per tracked request.
 5. Skeleton hide occurs immediately or delayed to satisfy `minVisibleMs`.
 
+Rendering guarantee:
+
+- when `skeleton:show` is emitted, manager guarantees a visible skeleton node is inserted
+- adaptive rendering failures degrade to overlay mode rather than skipping DOM insertion
+
 ## Timeout Behavior
 
 - `requestTimeoutMs` is handled by enhancer tracking.

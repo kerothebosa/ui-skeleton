@@ -1,0 +1,60 @@
+<!doctype html>
+<!--
+  Demo-only playground suite for manual verification of the published bundle.
+  Important: this app imports runtime assets from ../dist, not from src.
+-->
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@skeleton-ui/net Real-Case Playground</title>
+    <link rel="stylesheet" href="../dist/styles.css" />
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <main class="playground-shell" id="playground-shell">
+      <header class="app-header">
+        <h1>@skeleton-ui/net Real-Case Playground</h1>
+        <p class="intro">
+          Multi-route manual QA suite running against <code>dist/</code> assets.
+        </p>
+        <nav class="route-nav" aria-label="Demo routes">
+          <a href="#/overview" data-route-link="overview">Overview</a>
+          <a href="#/dashboard" data-route-link="dashboard">Dashboard</a>
+          <a href="#/forms" data-route-link="forms">Forms</a>
+          <a href="#/table" data-route-link="table">Data Table</a>
+          <a href="#/search" data-route-link="search">Search Lab</a>
+          <a href="#/workflow" data-route-link="workflow">Workflow Lab</a>
+          <a href="#/feed" data-route-link="feed">Feed Lab</a>
+          <a href="#/analytics" data-route-link="analytics">Analytics Lab</a>
+        </nav>
+      </header>
+
+      <section class="global-status">
+        <div class="status-chip" id="global-route-label">Route: overview</div>
+        <div class="status-chip" id="global-status-text">Global status: idle</div>
+        <div class="status-chip" id="global-compare-mode">Mode: with package vs without package</div>
+        <div class="status-chip status-chip-skeleton" id="global-skeleton-indicator" data-state="idle">
+          Skeleton: idle
+        </div>
+      </section>
+
+      <section class="content-layout">
+        <article class="demo-panel">
+          <h2 id="demo-title">Overview</h2>
+          <div id="demo-mount" class="demo-mount"></div>
+        </article>
+
+        <aside class="log-panel">
+          <h2>Shared Event Log</h2>
+          <p class="log-note">
+            Request lifecycle output from the active route enhancer instance.
+          </p>
+          <ul id="event-log" aria-live="polite"></ul>
+        </aside>
+      </section>
+    </main>
+
+    <script type="module" src="./main.ts"></script>
+  </body>
+</html>

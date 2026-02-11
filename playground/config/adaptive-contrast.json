@@ -1,0 +1,23 @@
+{
+  "schema": "@skeleton-ui/net/playground-config",
+  "version": 1,
+  "playgroundConfig": {
+    "showDelayMs": 90,
+    "minVisibleMs": 160,
+    "requestTimeoutMs": 7000,
+    "timeoutMode": "synthetic",
+    "enabledInterceptors": ["fetch", "xhr"],
+    "skeletonVisuals": {
+      "mode": "adaptive",
+      "animation": "wave",
+      "theme": "contrast",
+      "adaptive": {
+        "maxDepth": 5,
+        "maxPlaceholders": 240,
+        "minBlockHeightPx": 10,
+        "lineGapPx": 5,
+        "ignoreSelectors": ["[data-skeleton-ignore='true']"]
+      }
+    }
+  }
+}
