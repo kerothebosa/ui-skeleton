@@ -1,6 +1,6 @@
 # Real-World Testing Guide
 
-Use this guide to validate `@skeleton-ui/net` in a real application before release.
+Use this guide to validate `@kerothebosa/ui-skeleton-net` in a real application before release.
 
 ## 1) Install The Package Like A Consumer
 
@@ -14,14 +14,14 @@ npm pack
 In a separate app project, install the tarball:
 
 ```bash
-npm install ../ui-skeleton/skeleton-ui-net-0.1.0.tgz
+npm install ../ui-skeleton/kerothebosa-ui-skeleton-net-0.1.0.tgz
 ```
 
 ## 2) Minimal Integration In A Real App
 
 ```ts
-import { SkeletonEnhancer } from "@skeleton-ui/net";
-import "@skeleton-ui/net/styles.css";
+import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#app-content",

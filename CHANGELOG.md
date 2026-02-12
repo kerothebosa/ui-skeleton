@@ -14,9 +14,9 @@ The format is based on Keep a Changelog and this project follows Semantic Versio
 ## [0.1.0] - 2026-02-12
 
 ### Added
-- Initial public package baseline for `@skeleton-ui/net`.
+- Initial public package baseline for `@kerothebosa/ui-skeleton-net`.
 - Framework-agnostic skeleton enhancer with `fetch` and `XMLHttpRequest` interception.
 - Configurable lifecycle timing (`showDelayMs`, `minVisibleMs`, `requestTimeoutMs`, `timeoutMode`).
 - Lifecycle hooks and event bus integration.
-- Built-in stylesheet export: `@skeleton-ui/net/styles.css`.
+- Built-in stylesheet export: `@kerothebosa/ui-skeleton-net/styles.css`.
 - Unit and E2E test suite with CI and tag-based npm publish workflow.

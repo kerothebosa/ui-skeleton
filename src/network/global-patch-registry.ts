@@ -171,7 +171,7 @@ const ensureFetchPatch = (): void => {
       cancel: timeoutController
         ? () => {
             if (!timeoutController.signal.aborted) {
-              timeoutController.abort(new Error("Cancelled by @skeleton-ui/net timeout policy."));
+              timeoutController.abort(new Error("Cancelled by @kerothebosa/ui-skeleton-net timeout policy."));
             }
           }
         : undefined

@@ -9,13 +9,13 @@ const repositoryUrl = `https://github.com/${repository}`;
 const siteUrl = `https://${owner}.github.io/${repoName}/`;
 
 export default defineConfig({
-  title: "@skeleton-ui/net",
+  title: "@kerothebosa/ui-skeleton-net",
   description:
     "Framework-agnostic skeleton loader enhancer driven by fetch/xhr network interceptors.",
   base,
   cleanUrls: true,
   themeConfig: {
-    logo: { src: "/logo.svg", alt: "@skeleton-ui/net" },
+    logo: { src: "/logo.svg", alt: "@kerothebosa/ui-skeleton-net" },
     nav: [
       { text: "Architecture", link: "/architecture" },
       { text: "Lifecycle & Events", link: "/lifecycle-and-events" },
@@ -56,7 +56,7 @@ export default defineConfig({
     },
     footer: {
       message: "Released under the MIT License.",
-      copyright: "Copyright (c) skeleton-ui"
+      copyright: "Copyright (c) kerothebosa"
     }
   },
   head: [

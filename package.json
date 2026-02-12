@@ -1,5 +1,5 @@
 {
-  "name": "@skeleton-ui/net",
+  "name": "@kerothebosa/ui-skeleton-net",
   "version": "0.1.2",
   "description": "Framework-agnostic dynamic skeleton UI enhancer for network-driven interfaces.",
   "license": "MIT",
@@ -67,7 +67,7 @@
     "type": "git",
     "url": "git+https://github.com/kerothebosa/ui-skeleton.git"
   },
-  "author": "skeleton-ui",
+  "author": "kerothebosa",
   "keywords": [
     "skeleton",
     "skeleton-loader",

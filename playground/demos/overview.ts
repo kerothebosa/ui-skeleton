@@ -500,7 +500,7 @@ export const mountOverviewDemo = (ctx = {}) => {
 
   const exportCurrentConfig = () => {
     const payload = {
-      schema: "@skeleton-ui/net/playground-config",
+      schema: "@kerothebosa/ui-skeleton-net/playground-config",
       version: 1,
       generatedAt: new Date().toISOString(),
       playgroundConfig: ctx.getPlaygroundConfig()

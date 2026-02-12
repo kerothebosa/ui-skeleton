@@ -2,7 +2,7 @@
 
 The demo playground is a multi-route manual QA app that compares:
 
-- with package (`@skeleton-ui/net` active)
+- with package (`@kerothebosa/ui-skeleton-net` active)
 - without package (same UI/request flow, no skeleton enhancer)
 
 ## Run Locally
