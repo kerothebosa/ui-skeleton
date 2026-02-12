@@ -1,6 +1,8 @@
 # Documentation Index
 
 This folder contains implementation-focused documentation for `@skeleton-ui/net`.
+Published documentation site is generated from these files via `site/`:
+`https://skeleton-ui.github.io/net/`.
 
 ## Read In This Order
 
@@ -28,5 +30,6 @@ This folder contains implementation-focused documentation for `@skeleton-ui/net`
 
 1. Run `npm run ci`.
 2. Run `npm run pack:check`.
-3. Confirm repository metadata and docs links are correct.
-4. Bump package version and push a `vX.Y.Z` tag.
+3. Run `npm run docs:build`.
+4. Confirm repository metadata and docs links are correct.
+5. Bump package version and push a `vX.Y.Z` tag.
