@@ -1,17 +1,35 @@
 import { execSync } from "node:child_process";
 
-const jsonOutput = execSync("npm pack --dry-run --json --ignore-scripts", {
+const jsonOutput = execSync("npm pack --dry-run --json", {
   stdio: ["ignore", "pipe", "inherit"],
-  encoding: "utf8"
+  encoding: "utf8",
+  env: {
+    ...process.env,
+    npm_config_ignore_scripts: "true",
+    npm_config_loglevel: "silent",
+    npm_config_color: "false"
+  }
 });
 
-const startIndex = jsonOutput.indexOf("[");
-const endIndex = jsonOutput.lastIndexOf("]");
-if (startIndex < 0 || endIndex < 0) {
-  throw new Error("Could not locate JSON payload in npm pack output.");
-}
+const parsePackJson = (output = "") => {
+  const trimmed = output.trim();
+  if (!trimmed) {
+    throw new Error("npm pack returned empty output.");
+  }
 
-const parsed = JSON.parse(jsonOutput.slice(startIndex, endIndex + 1));
+  try {
+    return JSON.parse(trimmed);
+  } catch {
+    // npm can print extra non-JSON logs; extract the trailing JSON array payload.
+    const match = output.match(/(\[\s*\{[\s\S]*\}\s*\])\s*$/);
+    if (!match) {
+      throw new Error("Could not locate JSON payload in npm pack output.");
+    }
+    return JSON.parse(match[1]);
+  }
+};
+
+const parsed = parsePackJson(jsonOutput);
 const packResult = Array.isArray(parsed) ? parsed[0] : null;
 if (!packResult || !Array.isArray(packResult.files)) {
   throw new Error("Could not parse npm pack --dry-run --json output.");
