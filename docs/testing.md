@@ -28,7 +28,7 @@
 
 - Unit: `npm run test`
 - E2E: `npm run test:e2e`
-- Playground smoke: `npm run playground`
+- Playground smoke: `npm run demo:dev`
 - Full pipeline: `npm run ci`
 - Pack validation: `npm run pack:check`
 

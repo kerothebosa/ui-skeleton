@@ -1,4 +1,4 @@
-/* Demo-only playground UI styles. Published library styles are loaded from ../dist/styles.css. */
+/* Demo-only playground UI styles. Published library styles are imported via playground/main.ts from ../dist/styles.css. */
 
 :root {
   --ink: #1f2937;

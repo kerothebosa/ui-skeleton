@@ -170,7 +170,7 @@ export const mountOverviewDemo = (ctx = {}) => {
       <div class="control-grid control-grid-secondary">
         <label class="inline-field">
           Config URL
-          <input data-role="config-url" type="text" value="/config/default.json" />
+          <input data-role="config-url" type="text" value="./config/default.json" />
         </label>
         <button type="button" data-action="load-config-url">Load config URL</button>
         <button type="button" data-action="import-config">Import config JSON</button>

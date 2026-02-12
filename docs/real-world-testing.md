@@ -99,7 +99,7 @@ Then re-test the installed tarball in a real app once more.
 Run side-by-side manual QA before publish:
 
 ```bash
-npm run playground
+npm run demo:dev
 ```
 
 Then validate route scenarios at `http://127.0.0.1:4174/#/overview`:
@@ -107,4 +107,4 @@ Then validate route scenarios at `http://127.0.0.1:4174/#/overview`:
 1. `with package` side shows skeletons/animations
 2. `without package` side remains blank/pop-in during loading
 3. overview preset/config changes affect all tabs
-4. config bootstrapping works from URL (`?config=/config/default.json`)
+4. config bootstrapping works from URL (`?config=./config/default.json`)

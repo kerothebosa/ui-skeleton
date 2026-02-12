@@ -1,5 +1,6 @@
 // @ts-nocheck
 import { SkeletonEnhancer } from "../dist/index.js";
+import "../dist/styles.css";
 import { appendLogEntry, clearChildren, setNodeText } from "./demos/common.ts";
 import { mountAnalyticsDemo } from "./demos/analytics.ts";
 import { mountDashboardDemo } from "./demos/dashboard.ts";
@@ -9,6 +10,7 @@ import { mountOverviewDemo } from "./demos/overview.ts";
 import { mountSearchDemo } from "./demos/search.ts";
 import { mountTableDemo } from "./demos/table.ts";
 import { mountWorkflowDemo } from "./demos/workflow.ts";
+import { installPlaygroundMockApi, normalizeConfigUrl } from "./lib/mock-api.ts";
 
 const DEFAULT_ROUTE = "overview";
 const CONFIG_STORAGE_KEY = "@skeleton-ui/net/playground-config:v1";
@@ -26,6 +28,8 @@ const routeLabelNode = document.querySelector("#global-route-label");
 const globalStatusNode = document.querySelector("#global-status-text");
 const indicatorNode = document.querySelector("#global-skeleton-indicator");
 const navLinks = Array.from(document.querySelectorAll("[data-route-link]"));
+
+installPlaygroundMockApi();
 
 let activeEnhancer = null;
 let currentCleanup = () => {};
@@ -270,7 +274,8 @@ const loadPlaygroundConfigFromUrl = async (url = "", options = {}) => {
     throw new Error("config URL is required");
   }
 
-  const response = await fetch(url, { cache: "no-store" });
+  const resolvedUrl = normalizeConfigUrl(url);
+  const response = await fetch(resolvedUrl, { cache: "no-store" });
   if (!response.ok) {
     throw new Error(`HTTP ${response.status} while loading config`);
   }
@@ -279,8 +284,8 @@ const loadPlaygroundConfigFromUrl = async (url = "", options = {}) => {
   return applyPlaygroundConfigPayload(payload, {
     replace: options.replace !== false,
     persist: options.persist !== false,
-    source: options.source ?? `url:${url}`,
-    statusMessage: options.statusMessage ?? `Config loaded from ${url}`
+    source: options.source ?? `url:${resolvedUrl}`,
+    statusMessage: options.statusMessage ?? `Config loaded from ${resolvedUrl}`
   });
 };
 
