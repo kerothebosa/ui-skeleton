@@ -77,7 +77,7 @@ Accepted payload shape:
 
 ```json
 {
-  "schema": "@skeleton-ui/net/playground-config",
+  "schema": "@kerothebosa/ui-skeleton-net/playground-config",
   "version": 1,
   "playgroundConfig": {
     "showDelayMs": 120,

@@ -3,7 +3,7 @@
 This directory is a demo-only app used for manual QA against built artifacts in `dist/`.
 Each route renders side-by-side labs:
 
-- left: with `@skeleton-ui/net`
+- left: with `@kerothebosa/ui-skeleton-net`
 - right: same UI and requests without enhancer
 
 It intentionally imports:

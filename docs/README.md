@@ -1,6 +1,6 @@
 # Documentation Index
 
-This folder contains implementation-focused documentation for `@skeleton-ui/net`.
+This folder contains implementation-focused documentation for `@kerothebosa/ui-skeleton-net`.
 Published documentation site is generated from these files via `site/`:
 `https://kerothebosa.github.io/ui-skeleton/`.
 

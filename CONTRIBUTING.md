@@ -1,4 +1,4 @@
-# Contributing to @skeleton-ui/net
+# Contributing to @kerothebosa/ui-skeleton-net
 
 Thanks for contributing.
 
