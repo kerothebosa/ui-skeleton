@@ -14,7 +14,7 @@ hero:
       link: /api-reference
     - theme: alt
       text: Live Demo
-      link: /demo/
+      link: https://kerothebosa.github.io/ui-skeleton/demo/
 features:
   - title: Works with existing apps
     details: Patch fetch/xhr at runtime and drive skeleton visibility from real request lifecycle events.

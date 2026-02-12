@@ -56,6 +56,6 @@ const enhancer = new SkeletonEnhancer({
 
 ## Demo Links
 
-- Live demo: `/demo/`
+- Live demo: `https://kerothebosa.github.io/ui-skeleton/demo/`
 - Local demo dev server: `npm run demo:dev`
 - Local demo preview (built): `npm run demo:preview`
