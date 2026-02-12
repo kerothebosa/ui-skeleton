@@ -21,7 +21,7 @@ export default defineConfig({
   cleanUrls: true,
   themeConfig: {
     siteTitle: false,
-    logo: { src: withBase("logo.svg"), alt: packageName },
+    logo: { src: "/logo.svg", alt: packageName },
     nav: [
       { text: "Architecture", link: "/architecture" },
       { text: "Lifecycle & Events", link: "/lifecycle-and-events" },
