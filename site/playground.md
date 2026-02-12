@@ -19,7 +19,7 @@ http://127.0.0.1:4174/#/overview
 
 ## Live Demo
 
-- `/demo/`
+- `https://kerothebosa.github.io/ui-skeleton/demo/`
 
 ## Source Of Truth Guide
 

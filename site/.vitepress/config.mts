@@ -1,10 +1,12 @@
 import { defineConfig } from "vitepress";
 
 const repository = process.env.GITHUB_REPOSITORY ?? "kerothebosa/ui-skeleton";
+const owner = repository.split("/")[0] ?? "kerothebosa";
 const repoName = repository.split("/")[1] ?? "net";
 const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
 const base = process.env.DOCS_BASE ?? (isGitHubActions ? `/${repoName}/` : "/");
 const repositoryUrl = `https://github.com/${repository}`;
+const siteUrl = `https://${owner}.github.io/${repoName}/`;
 
 export default defineConfig({
   title: "@skeleton-ui/net",
@@ -22,7 +24,7 @@ export default defineConfig({
       { text: "Testing", link: "/testing" },
       { text: "Playground", link: "/playground" },
       { text: "Examples", link: "/examples" },
-      { text: "Demo", link: "/demo/" }
+      { text: "Demo", link: `${siteUrl}demo/`, target: "_blank", rel: "noreferrer" }
     ],
     sidebar: [
       {
