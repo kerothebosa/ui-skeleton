@@ -2,7 +2,7 @@
 
 Framework-agnostic skeleton loader enhancer driven by real network lifecycle (`fetch` + `XMLHttpRequest`) with timing controls, adaptive visuals, and typed hooks.
 
-[![CI](https://github.com/skeleton-ui/net/actions/workflows/ci.yml/badge.svg)](https://github.com/skeleton-ui/net/actions/workflows/ci.yml)
+[![CI](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml)
 [![npm version](https://img.shields.io/npm/v/@skeleton-ui/net.svg)](https://www.npmjs.com/package/@skeleton-ui/net)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@skeleton-ui/net)](https://bundlephobia.com/package/@skeleton-ui/net)
 [![license](https://img.shields.io/npm/l/@skeleton-ui/net.svg)](./LICENSE)
@@ -63,7 +63,7 @@ import "@skeleton-ui/net/styles.css";
 - events: `on(event, handler)`, `off(event, handler)`
 - interceptor control: `registerInterceptor()`, `unregisterInterceptor()`
 
-Full contracts and event payloads: [API Reference](https://skeleton-ui.github.io/net/api-reference)
+Full contracts and event payloads: [API Reference](https://kerothebosa.github.io/ui-skeleton/api-reference)
 
 ## Events / Hooks Example
 
@@ -83,19 +83,19 @@ const enhancer = new SkeletonEnhancer({
 
 ## Demos
 
-- Live demo (GitHub Pages): https://skeleton-ui.github.io/net/demo/
+- Live demo (GitHub Pages): https://kerothebosa.github.io/ui-skeleton/demo/
 - Local demo: `npm run demo:dev` then open `http://127.0.0.1:4174/#/overview`
 
 ## Documentation
 
-- Docs site: https://skeleton-ui.github.io/net/
-- Architecture: https://skeleton-ui.github.io/net/architecture
-- Lifecycle & Events: https://skeleton-ui.github.io/net/lifecycle-and-events
-- API Reference: https://skeleton-ui.github.io/net/api-reference
-- Interceptors: https://skeleton-ui.github.io/net/interceptors
-- Testing: https://skeleton-ui.github.io/net/testing
-- Playground: https://skeleton-ui.github.io/net/playground
-- Real-World Testing: https://skeleton-ui.github.io/net/real-world-testing
+- Docs site: https://kerothebosa.github.io/ui-skeleton/
+- Architecture: https://kerothebosa.github.io/ui-skeleton/architecture
+- Lifecycle & Events: https://kerothebosa.github.io/ui-skeleton/lifecycle-and-events
+- API Reference: https://kerothebosa.github.io/ui-skeleton/api-reference
+- Interceptors: https://kerothebosa.github.io/ui-skeleton/interceptors
+- Testing: https://kerothebosa.github.io/ui-skeleton/testing
+- Playground: https://kerothebosa.github.io/ui-skeleton/playground
+- Real-World Testing: https://kerothebosa.github.io/ui-skeleton/real-world-testing
 - Internal docs index (source of truth): `docs/README.md`
 
 ## Browser Support

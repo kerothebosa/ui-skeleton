@@ -2,7 +2,7 @@
 
 This folder contains implementation-focused documentation for `@skeleton-ui/net`.
 Published documentation site is generated from these files via `site/`:
-`https://skeleton-ui.github.io/net/`.
+`https://kerothebosa.github.io/ui-skeleton/`.
 
 ## Read In This Order
 
