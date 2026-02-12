@@ -69,6 +69,6 @@ const enhancer = new SkeletonEnhancer({
 - Local demo preview (built): `npm run demo:preview`
 
 <section class="page-flow-card">
-  <p><strong>Next steps:</strong> move from snippets to full option contracts in the <a href="/api-reference">API Reference</a>.</p>
-  <p>Need route-level behavior validation? Continue to the <a href="/playground">Playground guide</a>.</p>
+  <p><strong>Next steps:</strong> move from snippets to full option contracts in the <a href="./api-reference">API Reference</a>.</p>
+  <p>Need route-level behavior validation? Continue to the <a href="./playground">Playground guide</a>.</p>
 </section>

@@ -43,8 +43,8 @@ The demo includes scenario routes for:
 - <a href="https://kerothebosa.github.io/ui-skeleton/demo/" target="_blank" rel="noreferrer">Open live demo in new tab</a>
 
 <section class="page-flow-card">
-  <p><strong>Continue with internals:</strong> see lifecycle sequencing in <a href="/lifecycle-and-events">Lifecycle &amp; Events</a>.</p>
-  <p>For full option signatures, open the <a href="/api-reference">API Reference</a>.</p>
+  <p><strong>Continue with internals:</strong> see lifecycle sequencing in <a href="./lifecycle-and-events">Lifecycle &amp; Events</a>.</p>
+  <p>For full option signatures, open the <a href="./api-reference">API Reference</a>.</p>
 </section>
 
 ## Source Of Truth Guide

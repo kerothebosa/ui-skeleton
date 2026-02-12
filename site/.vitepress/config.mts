@@ -20,6 +20,7 @@ export default defineConfig({
   base,
   cleanUrls: true,
   themeConfig: {
+    siteTitle: false,
     logo: { src: withBase("logo.svg"), alt: packageName },
     nav: [
       { text: "Architecture", link: "/architecture" },
@@ -84,7 +85,7 @@ export default defineConfig({
       }
     ],
     ["meta", { property: "og:url", content: siteUrl }],
-    ["meta", { property: "og:image", content: `${siteUrl}logo.svg` }],
+    ["meta", { property: "og:image", content: withBase("logo.svg") }],
     ["meta", { name: "twitter:card", content: "summary_large_image" }],
     [
       "meta",

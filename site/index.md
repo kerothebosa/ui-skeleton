@@ -114,19 +114,19 @@ enhancer.start();
 ## Continue With The Docs
 
 <section class="home-next-grid">
-  <a class="home-next-card" href="/architecture">
+  <a class="home-next-card" href="./architecture">
     <h3>Architecture</h3>
     <p>Understand core modules, data flow, and runtime boundaries.</p>
   </a>
-  <a class="home-next-card" href="/lifecycle-and-events">
+  <a class="home-next-card" href="./lifecycle-and-events">
     <h3>Lifecycle &amp; Events</h3>
     <p>See exact event timing and payload semantics.</p>
   </a>
-  <a class="home-next-card" href="/api-reference">
+  <a class="home-next-card" href="./api-reference">
     <h3>API Reference</h3>
     <p>Review public options, types, and method contracts.</p>
   </a>
-  <a class="home-next-card" href="/playground">
+  <a class="home-next-card" href="./playground">
     <h3>Playground Guide</h3>
     <p>Run local scenarios and compare behavior with and without the package.</p>
   </a>
