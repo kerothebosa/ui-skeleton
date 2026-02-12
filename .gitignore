@@ -1,5 +1,9 @@
 node_modules/
 dist/
+playground/dist/
+site/.vitepress/dist/
+site/.vitepress/.temp/
+site/public/demo/
 coverage/
 .tmp/
 .nyc_output/
