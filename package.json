@@ -1,6 +1,6 @@
 {
   "name": "@kerothebosa/ui-skeleton-net",
-  "version": "0.1.0",
+  "version": "0.1.2",
   "description": "Framework-agnostic dynamic skeleton UI enhancer for network-driven interfaces.",
   "license": "MIT",
   "type": "module",
