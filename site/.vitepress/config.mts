@@ -57,7 +57,7 @@ export default defineConfig({
     search: { provider: "local" },
     socialLinks: [{ icon: "github", link: repositoryUrl }],
     editLink: {
-      pattern: `${repositoryUrl}/edit/main/:path`,
+      pattern: `${repositoryUrl}/edit/main/docs/:path`,
       text: "Edit this page on GitHub"
     },
     footer: {
