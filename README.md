@@ -1,21 +1,16 @@
 # @skeleton-ui/net
 
-Framework-agnostic TypeScript library scaffold for enhancing network-driven UIs with skeleton loaders.
+Framework-agnostic skeleton loader enhancer driven by real network lifecycle (`fetch` + `XMLHttpRequest`) with timing controls, adaptive visuals, and typed hooks.
 
-Full project docs live in `docs/README.md`.
-For real app validation, use `docs/real-world-testing.md`.
-For local browser QA, use `docs/playground.md`.
+[![CI](https://github.com/skeleton-ui/net/actions/workflows/ci.yml/badge.svg)](https://github.com/skeleton-ui/net/actions/workflows/ci.yml)
+[![npm version](https://img.shields.io/npm/v/@skeleton-ui/net.svg)](https://www.npmjs.com/package/@skeleton-ui/net)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@skeleton-ui/net)](https://bundlephobia.com/package/@skeleton-ui/net)
+[![license](https://img.shields.io/npm/l/@skeleton-ui/net.svg)](./LICENSE)
 
-## Status
+## Why This Exists
 
-This repository is a production-ready template scaffold:
-
-- Dual output (`ESM` + `CJS`) with generated `.d.ts` files
-- Strict TypeScript + ESLint + Prettier setup
-- Jest unit tests and Playwright E2E fixtures
-- GitHub Actions for CI and npm publishing
-
-Core skeleton behavior includes adaptive placeholder rendering with overlay fallback.
+`@skeleton-ui/net` targets a common UX gap: loading states that are disconnected from real request behavior.
+Instead of manual `isLoading` flags spread across components, it tracks network activity and coordinates skeleton visibility with consistent timing rules.
 
 ## Installation
 
@@ -23,15 +18,7 @@ Core skeleton behavior includes adaptive placeholder rendering with overlay fall
 npm install @skeleton-ui/net
 ```
 
-## Styling
-
-This package ships default overlay styles, but you must import them explicitly:
-
-```ts
-import "@skeleton-ui/net/styles.css";
-```
-
-## Quick Usage
+## Quick Start
 
 ```ts
 import { SkeletonEnhancer } from "@skeleton-ui/net";
@@ -39,133 +26,87 @@ import "@skeleton-ui/net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#content",
-  skeletonVisuals: {
-    mode: "hybrid",
-    animation: "wave",
-    theme: "cool"
-  },
-  timeoutMode: "abort",
   showDelayMs: 120,
   minVisibleMs: 180,
-  requestTimeoutMs: 15_000,
-  hooks: {
-    onRequestStart: ({ url }) => console.log("request:start", url),
-    onRequestEnd: ({ url, status }) => console.log("request:end", url, status)
-  }
+  requestTimeoutMs: 10_000,
+  timeoutMode: "abort",
+  enabledInterceptors: ["fetch", "xhr"]
 });
 
 enhancer.start();
 ```
 
-## API Snapshot
+## Styling Import Note
+
+Default styles are not auto-injected by bundlers. Import this explicitly:
 
 ```ts
-type SkeletonEnhancerOptions = {
-  skeletonSelector?: string;
-  skeletonClassName?: string;
-  overlayClassName?: string;
-  skeletonVisuals?: {
-    mode?: "overlay" | "adaptive" | "hybrid";
-    animation?: "shimmer" | "wave" | "pulse" | "breathe" | "none";
-    theme?:
-      | "classic"
-      | "cool"
-      | "warm"
-      | "contrast"
-      | {
-          baseColor: string;
-          highlightColor: string;
-          durationMs?: number;
-          easing?: string;
-        };
-    adaptive?: {
-      maxDepth?: number;
-      maxPlaceholders?: number;
-      minBlockHeightPx?: number;
-      lineGapPx?: number;
-      ignoreSelectors?: string[];
-    };
-  };
-  requestTimeoutMs?: number;
-  timeoutMode?: "abort" | "synthetic";
-  showDelayMs?: number;
-  minVisibleMs?: number;
-  enabledInterceptors?: Array<"fetch" | "xhr">;
-  shouldHandleRequest?: (ctx: {
-    url: string;
-    method: string;
-    source: "fetch" | "xhr" | string;
-  }) => boolean;
-  debug?: boolean;
-  hooks?: SkeletonEnhancerHooks;
-};
-
-class SkeletonEnhancer {
-  start(): void;
-  stop(): void;
-  destroy(): void;
-  on(event, handler): SkeletonEnhancer;
-  off(event, handler): SkeletonEnhancer;
-  registerInterceptor(interceptor): SkeletonEnhancer;
-  unregisterInterceptor(name: string): SkeletonEnhancer;
-  isRunning(): boolean;
-}
+import "@skeleton-ui/net/styles.css";
 ```
 
-## Browser / Runtime Support
+## Configuration Overview
 
-- Node.js `>=18` for tooling and tests
-- Modern browsers with `fetch` and `XMLHttpRequest` support
-- Styling is not zero-config: import `@skeleton-ui/net/styles.css`
+| Option | Type | Purpose |
+| --- | --- | --- |
+| `showDelayMs` | `number` | Delay before showing skeleton to avoid flicker on fast responses. |
+| `minVisibleMs` | `number` | Minimum skeleton display duration once shown. |
+| `requestTimeoutMs` | `number` | Per-request timeout threshold for lifecycle handling. |
+| `timeoutMode` | `"abort" \| "synthetic"` | Abort request vs stop UI tracking without aborting transport. |
+| `enabledInterceptors` | `Array<"fetch" \| "xhr">` | Select network transports to observe. |
+| `skeletonVisuals` | object | Visual mode/theme/animation/adaptive placeholder behavior. |
 
-## Scripts
+## API Overview
 
-| Script                | Purpose                                        |
-| --------------------- | ---------------------------------------------- |
-| `npm run build`       | Build `dist/` as ESM + CJS + declaration files |
-| `npm run playground`  | Build package and start local playground server |
-| `npm run playground:start` | Start playground server (expects built `dist/`) |
-| `npm run build:watch` | Build in watch mode                            |
-| `npm run lint`        | Run ESLint with zero warnings                  |
-| `npm run typecheck`   | Run strict TypeScript checks                   |
-| `npm run test`        | Run Jest unit tests with coverage              |
-| `npm run test:e2e`    | Build and run Playwright E2E tests             |
-| `npm run test:all`    | Run unit + E2E test suites                     |
-| `npm run ci`          | Full local CI sequence                         |
+`SkeletonEnhancer` exposes:
 
-## Testing
+- lifecycle: `start()`, `stop()`, `destroy()`, `isRunning()`
+- events: `on(event, handler)`, `off(event, handler)`
+- interceptor control: `registerInterceptor()`, `unregisterInterceptor()`
 
-Unit tests:
+Full contracts and event payloads: [API Reference](https://skeleton-ui.github.io/net/api-reference)
 
-```bash
-npm run test
+## Events / Hooks Example
+
+```ts
+const enhancer = new SkeletonEnhancer({
+  hooks: {
+    onRequestStart: ({ requestId, method, url }) =>
+      console.log("request:start", requestId, method, url),
+    onRequestEnd: ({ requestId, status, durationMs }) =>
+      console.log("request:end", requestId, status, durationMs),
+    onSkeletonShow: ({ requestId }) => console.log("skeleton:show", requestId),
+    onSkeletonHide: ({ requestId }) => console.log("skeleton:hide", requestId),
+    onError: ({ requestId, error }) => console.error("error", requestId, error.message)
+  }
+});
 ```
 
-E2E tests:
+## Demos
 
-```bash
-npm run test:e2e
-```
+- Live demo (GitHub Pages): https://skeleton-ui.github.io/net/demo/
+- Local demo: `npm run demo:dev` then open `http://127.0.0.1:4174/#/overview`
 
-Playground manual QA:
+## Documentation
 
-```bash
-npm run playground
-```
+- Docs site: https://skeleton-ui.github.io/net/
+- Architecture: https://skeleton-ui.github.io/net/architecture
+- Lifecycle & Events: https://skeleton-ui.github.io/net/lifecycle-and-events
+- API Reference: https://skeleton-ui.github.io/net/api-reference
+- Interceptors: https://skeleton-ui.github.io/net/interceptors
+- Testing: https://skeleton-ui.github.io/net/testing
+- Playground: https://skeleton-ui.github.io/net/playground
+- Real-World Testing: https://skeleton-ui.github.io/net/real-world-testing
+- Internal docs index (source of truth): `docs/README.md`
 
-## Publishing
+## Browser Support
 
-1. Update version in `package.json`.
-2. Commit and push to `main`.
-3. Create and push a semantic version tag:
-   ```bash
-   git tag v0.1.0
-   git push origin v0.1.0
-   ```
-4. GitHub Actions publishes to npm using `NPM_TOKEN`.
+- Modern browsers with `fetch` and `XMLHttpRequest`
+- Node.js `>=18` for package tooling, local CI, and docs/demo builds
 
-## Contributing
+## Project Health
 
-1. Install dependencies with `npm ci`.
-2. Run `npm run ci` before opening a PR.
-3. Keep public API additions typed and documented in this README.
+- Contributing: `CONTRIBUTING.md`
+- Code of Conduct: `CODE_OF_CONDUCT.md`
+- Security Policy: `SECURITY.md`
+- Changelog: `CHANGELOG.md`
+- License: `LICENSE`
