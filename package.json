@@ -5,7 +5,7 @@
   "license": "MIT",
   "type": "module",
   "sideEffects": [
-    "./dist/styles.css"
+    "**/*.css"
   ],
   "main": "./dist/index.cjs",
   "module": "./dist/index.js",
@@ -18,12 +18,14 @@
       "require": "./dist/index.cjs",
       "default": "./dist/index.js"
     },
-    "./styles.css": "./dist/styles.css"
+    "./styles.css": "./dist/styles.css",
+    "./package.json": "./package.json"
   },
   "files": [
     "dist",
     "README.md",
-    "LICENSE"
+    "LICENSE",
+    "CHANGELOG.md"
   ],
   "engines": {
     "node": ">=18"
@@ -33,9 +35,16 @@
     "build:code": "tsup src/index.ts --format esm,cjs --dts --sourcemap --clean",
     "build:styles": "node scripts/copy-styles.mjs",
     "build": "npm run clean && npm run build:code && npm run build:styles",
-    "playground:build": "npm run build",
-    "playground:start": "node --loader ts-node/esm playground/server.ts",
-    "playground": "npm run playground:build && npm run playground:start",
+    "demo:dev": "npm run build && vite --config playground/vite.config.ts",
+    "demo:build": "npm run build && vite build --config playground/vite.config.ts",
+    "demo:preview": "vite preview --config playground/vite.config.ts --host 127.0.0.1 --port 4174",
+    "docs:prepare": "npm run demo:build && node scripts/sync-demo-assets.mjs",
+    "docs:dev": "npm run docs:prepare && vitepress dev site --host 127.0.0.1 --port 4175",
+    "docs:build": "npm run docs:prepare && vitepress build site",
+    "docs:preview": "vitepress preview site --host 127.0.0.1 --port 4175",
+    "playground:build": "npm run demo:build",
+    "playground:start": "npm run demo:dev",
+    "playground": "npm run demo:dev",
     "build:watch": "npm run build:styles && tsup src/index.ts --format esm,cjs --dts --sourcemap --watch",
     "typecheck": "tsc -p tsconfig.json --noEmit",
     "lint": "eslint . --max-warnings=0",
@@ -58,18 +67,22 @@
     "type": "git",
     "url": "git+https://github.com/skeleton-ui/net.git"
   },
+  "author": "skeleton-ui",
   "keywords": [
     "skeleton",
+    "skeleton-loader",
     "loader",
     "network",
     "interceptor",
+    "fetch",
+    "xhr",
     "ui",
     "typescript"
   ],
   "bugs": {
     "url": "https://github.com/skeleton-ui/net/issues"
   },
-  "homepage": "https://github.com/skeleton-ui/net#readme",
+  "homepage": "https://skeleton-ui.github.io/net/",
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@playwright/test": "^1.49.1",
@@ -88,6 +101,8 @@
     "ts-jest": "^29.2.5",
     "ts-node": "^10.9.2",
     "tsup": "^8.3.5",
-    "typescript": "^5.7.2"
+    "typescript": "^5.7.2",
+    "vite": "^7.2.0",
+    "vitepress": "^1.6.4"
   }
 }
