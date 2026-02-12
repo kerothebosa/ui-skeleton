@@ -65,7 +65,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/skeleton-ui/net.git"
+    "url": "git+https://github.com/kerothebosa/ui-skeleton.git"
   },
   "author": "skeleton-ui",
   "keywords": [
@@ -80,9 +80,9 @@
     "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/skeleton-ui/net/issues"
+    "url": "https://github.com/kerothebosa/ui-skeleton/issues"
   },
-  "homepage": "https://skeleton-ui.github.io/net/",
+  "homepage": "https://kerothebosa.github.io/ui-skeleton/",
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@playwright/test": "^1.49.1",

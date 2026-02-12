@@ -3,7 +3,7 @@ import { fileURLToPath } from "node:url";
 import { resolve } from "node:path";
 
 const rootDir = fileURLToPath(new URL(".", import.meta.url));
-const repository = process.env.GITHUB_REPOSITORY ?? "skeleton-ui/net";
+const repository = process.env.GITHUB_REPOSITORY ?? "kerothebosa/ui-skeleton";
 const repoName = repository.split("/")[1] ?? "net";
 const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
 const base = process.env.DEMO_BASE ?? (isGitHubActions ? `/${repoName}/demo/` : "/");

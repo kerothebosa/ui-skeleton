@@ -1,9 +1,10 @@
 import { defineConfig } from "vitepress";
 
-const repository = process.env.GITHUB_REPOSITORY ?? "skeleton-ui/net";
+const repository = process.env.GITHUB_REPOSITORY ?? "kerothebosa/ui-skeleton";
 const repoName = repository.split("/")[1] ?? "net";
 const isGitHubActions = process.env.GITHUB_ACTIONS === "true";
 const base = process.env.DOCS_BASE ?? (isGitHubActions ? `/${repoName}/` : "/");
+const repositoryUrl = `https://github.com/${repository}`;
 
 export default defineConfig({
   title: "@skeleton-ui/net",
@@ -12,7 +13,7 @@ export default defineConfig({
   base,
   cleanUrls: true,
   themeConfig: {
-    logo: { src: `${base}logo.svg`, alt: "@skeleton-ui/net" },
+    logo: { src: "/logo.svg", alt: "@skeleton-ui/net" },
     nav: [
       { text: "Architecture", link: "/architecture" },
       { text: "Lifecycle & Events", link: "/lifecycle-and-events" },
@@ -21,7 +22,7 @@ export default defineConfig({
       { text: "Testing", link: "/testing" },
       { text: "Playground", link: "/playground" },
       { text: "Examples", link: "/examples" },
-      { text: "Demo", link: `${base}demo/` }
+      { text: "Demo", link: "/demo/" }
     ],
     sidebar: [
       {
@@ -46,9 +47,9 @@ export default defineConfig({
       }
     ],
     search: { provider: "local" },
-    socialLinks: [{ icon: "github", link: "https://github.com/skeleton-ui/net" }],
+    socialLinks: [{ icon: "github", link: repositoryUrl }],
     editLink: {
-      pattern: "https://github.com/skeleton-ui/net/edit/main/:path",
+      pattern: `${repositoryUrl}/edit/main/:path`,
       text: "Edit this page on GitHub"
     },
     footer: {
@@ -58,6 +59,6 @@ export default defineConfig({
   },
   head: [
     ["meta", { name: "theme-color", content: "#0f172a" }],
-    ["link", { rel: "icon", href: `${base}logo.svg` }]
+    ["link", { rel: "icon", href: "/logo.svg" }]
   ]
 });
