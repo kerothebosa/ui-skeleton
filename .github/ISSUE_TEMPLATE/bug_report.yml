@@ -1,0 +1,54 @@
+name: Bug report
+description: Report a reproducible defect in @skeleton-ui/net.
+title: "[Bug]: "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for reporting a bug. Please provide enough detail to reproduce and validate a fix.
+  - type: input
+    id: version
+    attributes:
+      label: Package version
+      description: Version of @skeleton-ui/net where the bug appears.
+      placeholder: 0.1.0
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Browser/runtime/framework details.
+      placeholder: Chrome 122, Node 20, React 18
+    validations:
+      required: true
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps to reproduce
+      description: Provide exact steps and request flow.
+      placeholder: |
+        1. Initialize SkeletonEnhancer with...
+        2. Trigger request...
+        3. Observe...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior
+    validations:
+      required: true
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs or screenshots
+      description: Include console output, stack traces, or screenshots if available.

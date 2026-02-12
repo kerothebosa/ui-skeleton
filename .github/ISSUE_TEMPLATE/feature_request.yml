@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest an enhancement for @skeleton-ui/net.
+title: "[Feature]: "
+labels:
+  - enhancement
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please describe the use case and expected API/behavior impact.
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem statement
+      description: What problem are you trying to solve?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposed solution
+      description: Suggested API, config shape, or behavior.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered
+      description: Other approaches you evaluated.
+  - type: textarea
+    id: scope
+    attributes:
+      label: Scope and impact
+      description: Compatibility, migration concerns, and testing implications.
