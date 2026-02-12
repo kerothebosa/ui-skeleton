@@ -1,16 +1,26 @@
 # @kerothebosa/ui-skeleton-net
 
-Framework-agnostic skeleton loader enhancer driven by real network lifecycle (`fetch` + `XMLHttpRequest`) with timing controls, adaptive visuals, and typed hooks.
+Network-aware skeleton loading for modern web apps.  
+Patch `fetch` and `XMLHttpRequest`, then drive skeleton visibility from real request lifecycle with predictable timing controls and typed hooks.
 
 [![CI](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml)
+[![Pages](https://github.com/kerothebosa/ui-skeleton/actions/workflows/pages.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/pages.yml)
 [![npm version](https://img.shields.io/npm/v/@kerothebosa/ui-skeleton-net.svg)](https://www.npmjs.com/package/@kerothebosa/ui-skeleton-net)
 [![bundle size](https://img.shields.io/bundlephobia/minzip/@kerothebosa/ui-skeleton-net)](https://bundlephobia.com/package/@kerothebosa/ui-skeleton-net)
 [![license](https://img.shields.io/npm/l/@kerothebosa/ui-skeleton-net.svg)](./LICENSE)
 
-## Why This Exists
+## Why This Package
 
-`@kerothebosa/ui-skeleton-net` targets a common UX gap: loading states that are disconnected from real request behavior.
-Instead of manual `isLoading` flags spread across components, it tracks network activity and coordinates skeleton visibility with consistent timing rules.
+Most loading UIs rely on scattered `isLoading` flags and drift away from actual network behavior.  
+`@kerothebosa/ui-skeleton-net` centralizes this at the transport layer and gives you consistent skeleton timing across your app.
+
+### Highlights
+
+- Framework-agnostic runtime integration
+- Intercepts both `fetch` and `XMLHttpRequest`
+- Timing controls to reduce flicker (`showDelayMs`, `minVisibleMs`)
+- Typed lifecycle hooks for observability and analytics
+- Publish-ready distribution (`ESM`, `CJS`, `d.ts`, `styles.css`)
 
 ## Installation
 
@@ -36,36 +46,29 @@ const enhancer = new SkeletonEnhancer({
 enhancer.start();
 ```
 
-## Styling Import Note
+### Styling Requirement
 
-Default styles are not auto-injected by bundlers. Import this explicitly:
+The stylesheet is not auto-injected by bundlers. Import it explicitly:
 
 ```ts
 import "@kerothebosa/ui-skeleton-net/styles.css";
 ```
 
-## Configuration Overview
+## Configuration At A Glance
 
 | Option | Type | Purpose |
 | --- | --- | --- |
-| `showDelayMs` | `number` | Delay before showing skeleton to avoid flicker on fast responses. |
-| `minVisibleMs` | `number` | Minimum skeleton display duration once shown. |
-| `requestTimeoutMs` | `number` | Per-request timeout threshold for lifecycle handling. |
-| `timeoutMode` | `"abort" \| "synthetic"` | Abort request vs stop UI tracking without aborting transport. |
-| `enabledInterceptors` | `Array<"fetch" \| "xhr">` | Select network transports to observe. |
-| `skeletonVisuals` | object | Visual mode/theme/animation/adaptive placeholder behavior. |
+| `showDelayMs` | `number` | Delay skeleton reveal to avoid flashing on fast requests. |
+| `minVisibleMs` | `number` | Keep skeleton visible long enough for stable perceived UX. |
+| `requestTimeoutMs` | `number` | Timeout threshold for request lifecycle handling. |
+| `timeoutMode` | `"abort" \| "synthetic"` | Abort transport or only finalize UI lifecycle. |
+| `enabledInterceptors` | `Array<"fetch" \| "xhr">` | Select observed network transports. |
+| `skeletonVisuals` | `object` | Visual mode, animation, theme, and adaptive placeholder behavior. |
 
-## API Overview
+Full options and types:  
+https://kerothebosa.github.io/ui-skeleton/api-reference
 
-`SkeletonEnhancer` exposes:
-
-- lifecycle: `start()`, `stop()`, `destroy()`, `isRunning()`
-- events: `on(event, handler)`, `off(event, handler)`
-- interceptor control: `registerInterceptor()`, `unregisterInterceptor()`
-
-Full contracts and event payloads: [API Reference](https://kerothebosa.github.io/ui-skeleton/api-reference)
-
-## Events / Hooks Example
+## Events And Hooks Example
 
 ```ts
 const enhancer = new SkeletonEnhancer({
@@ -81,14 +84,15 @@ const enhancer = new SkeletonEnhancer({
 });
 ```
 
-## Demos
+## Demo
 
-- Live demo (GitHub Pages): https://kerothebosa.github.io/ui-skeleton/demo/
-- Local demo: `npm run demo:dev` then open `http://127.0.0.1:4174/#/overview`
+- Live demo: https://kerothebosa.github.io/ui-skeleton/demo/
+- Local demo dev: `npm run demo:dev`
+- Local demo preview: `npm run demo:preview`
 
 ## Documentation
 
-- Docs site: https://kerothebosa.github.io/ui-skeleton/
+- Docs homepage: https://kerothebosa.github.io/ui-skeleton/
 - Architecture: https://kerothebosa.github.io/ui-skeleton/architecture
 - Lifecycle & Events: https://kerothebosa.github.io/ui-skeleton/lifecycle-and-events
 - API Reference: https://kerothebosa.github.io/ui-skeleton/api-reference
@@ -96,17 +100,24 @@ const enhancer = new SkeletonEnhancer({
 - Testing: https://kerothebosa.github.io/ui-skeleton/testing
 - Playground: https://kerothebosa.github.io/ui-skeleton/playground
 - Real-World Testing: https://kerothebosa.github.io/ui-skeleton/real-world-testing
-- Internal docs index (source of truth): `docs/README.md`
+- Internal docs index: `docs/README.md`
 
-## Browser Support
+## Browser And Runtime Support
 
 - Modern browsers with `fetch` and `XMLHttpRequest`
-- Node.js `>=18` for package tooling, local CI, and docs/demo builds
+- Node.js `>=18` for tooling, CI, and local docs/demo builds
 
-## Project Health
+## Development Scripts
+
+- `npm run build` - Build package outputs (`dist/`)
+- `npm run demo:dev` - Run local playground demo
+- `npm run docs:dev` - Run VitePress docs locally
+- `npm run ci` - Lint + typecheck + tests + e2e + pack check
+
+## Project Standards
 
 - Contributing: `CONTRIBUTING.md`
 - Code of Conduct: `CODE_OF_CONDUCT.md`
-- Security Policy: `SECURITY.md`
+- Security: `SECURITY.md`
 - Changelog: `CHANGELOG.md`
 - License: `LICENSE`
