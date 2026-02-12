@@ -20,7 +20,7 @@ export default defineConfig({
   base,
   cleanUrls: true,
   themeConfig: {
-    siteTitle: false,
+    siteTitle: packageName,
     logo: { src: "/logo.svg", alt: packageName },
     nav: [
       { text: "Architecture", link: "/architecture" },
