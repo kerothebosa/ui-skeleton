@@ -1,6 +1,10 @@
 # Examples
 
+Use these copy/paste-ready snippets to integrate `@kerothebosa/ui-skeleton-net` quickly, then tune behavior for production UX.
+
 ## Minimal Integration
+
+This is the fastest setup to connect skeleton visibility to real network activity.
 
 ```ts
 import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
@@ -14,6 +18,8 @@ enhancer.start();
 ```
 
 ## Preset-Like Advanced Configuration
+
+Use this when you need tighter control over timing and adaptive placeholder generation.
 
 ```ts
 const enhancer = new SkeletonEnhancer({
@@ -40,6 +46,8 @@ const enhancer = new SkeletonEnhancer({
 
 ## Event Hooks Logging
 
+Use hooks for observability, analytics, and debugging lifecycle transitions.
+
 ```ts
 const enhancer = new SkeletonEnhancer({
   hooks: {
@@ -56,6 +64,11 @@ const enhancer = new SkeletonEnhancer({
 
 ## Demo Links
 
-- Live demo: `https://kerothebosa.github.io/ui-skeleton/demo/`
+- Live demo: <a href="https://kerothebosa.github.io/ui-skeleton/demo/" target="_blank" rel="noreferrer">open in new tab</a>
 - Local demo dev server: `npm run demo:dev`
 - Local demo preview (built): `npm run demo:preview`
+
+<section class="page-flow-card">
+  <p><strong>Next steps:</strong> move from snippets to full option contracts in the <a href="./api-reference">API Reference</a>.</p>
+  <p>Need route-level behavior validation? Continue to the <a href="./playground">Playground guide</a>.</p>
+</section>
