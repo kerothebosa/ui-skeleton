@@ -13,7 +13,7 @@ import { mountWorkflowDemo } from "./demos/workflow.ts";
 import { installPlaygroundMockApi, normalizeConfigUrl } from "./lib/mock-api.ts";
 
 const DEFAULT_ROUTE = "overview";
-const CONFIG_STORAGE_KEY = "@skeleton-ui/net/playground-config:v1";
+const CONFIG_STORAGE_KEY = "@kerothebosa/ui-skeleton-net/playground-config:v1";
 const CONFIG_PAYLOAD_VERSION = 1;
 const VALID_INTERCEPTORS = new Set(["fetch", "xhr"]);
 const VALID_TIMEOUT_MODES = new Set(["abort", "synthetic"]);
@@ -202,7 +202,7 @@ const readStoredConfig = () => {
 const persistConfig = (nextConfig = {}) => {
   try {
     const payload = {
-      schema: "@skeleton-ui/net/playground-config",
+      schema: "@kerothebosa/ui-skeleton-net/playground-config",
       version: CONFIG_PAYLOAD_VERSION,
       updatedAt: new Date().toISOString(),
       playgroundConfig: nextConfig

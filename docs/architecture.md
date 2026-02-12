@@ -11,7 +11,7 @@
   - `skeleton-manager.ts`: skeleton node show/hide/cleanup behavior with adaptive placeholder generation.
   - `style-registry.ts`: runtime CSS variable/keyframe generation for visual presets.
 - `src/styles/`
-  - `skeleton.css`: published default overlay styles consumed by `@skeleton-ui/net/styles.css`.
+  - `skeleton.css`: published default overlay styles consumed by `@kerothebosa/ui-skeleton-net/styles.css`.
 - `src/orchestrator/`
   - `event-bus.ts`: typed internal event fan-out.
 - `src/types/`
@@ -39,7 +39,7 @@ Adaptive rendering safety:
 ## Styling Contract
 
 - Runtime only injects DOM nodes and class names.
-- Visual appearance uses both shipped stylesheet (`@skeleton-ui/net/styles.css`) and runtime-generated CSS.
+- Visual appearance uses both shipped stylesheet (`@kerothebosa/ui-skeleton-net/styles.css`) and runtime-generated CSS.
 - Consumers can override by:
   - setting `overlayClassName`, and/or
   - setting `skeletonVisuals` (mode, animation, theme, adaptive scanning), and/or

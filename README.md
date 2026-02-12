@@ -1,28 +1,28 @@
-# @skeleton-ui/net
+# @kerothebosa/ui-skeleton-net
 
 Framework-agnostic skeleton loader enhancer driven by real network lifecycle (`fetch` + `XMLHttpRequest`) with timing controls, adaptive visuals, and typed hooks.
 
 [![CI](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml)
-[![npm version](https://img.shields.io/npm/v/@skeleton-ui/net.svg)](https://www.npmjs.com/package/@skeleton-ui/net)
-[![bundle size](https://img.shields.io/bundlephobia/minzip/@skeleton-ui/net)](https://bundlephobia.com/package/@skeleton-ui/net)
-[![license](https://img.shields.io/npm/l/@skeleton-ui/net.svg)](./LICENSE)
+[![npm version](https://img.shields.io/npm/v/@kerothebosa/ui-skeleton-net.svg)](https://www.npmjs.com/package/@kerothebosa/ui-skeleton-net)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@kerothebosa/ui-skeleton-net)](https://bundlephobia.com/package/@kerothebosa/ui-skeleton-net)
+[![license](https://img.shields.io/npm/l/@kerothebosa/ui-skeleton-net.svg)](./LICENSE)
 
 ## Why This Exists
 
-`@skeleton-ui/net` targets a common UX gap: loading states that are disconnected from real request behavior.
+`@kerothebosa/ui-skeleton-net` targets a common UX gap: loading states that are disconnected from real request behavior.
 Instead of manual `isLoading` flags spread across components, it tracks network activity and coordinates skeleton visibility with consistent timing rules.
 
 ## Installation
 
 ```bash
-npm install @skeleton-ui/net
+npm install @kerothebosa/ui-skeleton-net
 ```
 
 ## Quick Start
 
 ```ts
-import { SkeletonEnhancer } from "@skeleton-ui/net";
-import "@skeleton-ui/net/styles.css";
+import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#content",
@@ -41,7 +41,7 @@ enhancer.start();
 Default styles are not auto-injected by bundlers. Import this explicitly:
 
 ```ts
-import "@skeleton-ui/net/styles.css";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 ```
 
 ## Configuration Overview

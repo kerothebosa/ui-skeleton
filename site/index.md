@@ -1,8 +1,8 @@
 ---
 layout: home
-title: "@skeleton-ui/net"
+title: "@kerothebosa/ui-skeleton-net"
 hero:
-  name: "@skeleton-ui/net"
+  name: "@kerothebosa/ui-skeleton-net"
   text: "Network-Aware Skeleton Loading for Any UI Stack"
   tagline: "Framework-agnostic fetch/xhr interceptor with lifecycle controls, adaptive placeholders, and typed hooks."
   actions:
@@ -29,12 +29,12 @@ features:
 ## Install
 
 ```bash
-npm install @skeleton-ui/net
+npm install @kerothebosa/ui-skeleton-net
 ```
 
 ```ts
-import { SkeletonEnhancer } from "@skeleton-ui/net";
-import "@skeleton-ui/net/styles.css";
+import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#content",

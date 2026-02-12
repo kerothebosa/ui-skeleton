@@ -47,7 +47,7 @@ type SkeletonEnhancerOptions = {
 ## Style Import
 
 ```ts
-import "@skeleton-ui/net/styles.css";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 ```
 
 `overlayClassName` defaults to `sknet-skeleton-overlay` and maps to the packaged CSS class.

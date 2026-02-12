@@ -24,8 +24,8 @@ Use this checklist before making the repository public or publishing a new relea
 
 - [ ] `npm pack` creates expected tarball
 - [ ] Install tarball in a clean test app and verify:
-- [ ] `import { SkeletonEnhancer } from "@skeleton-ui/net"` works
-- [ ] `import "@skeleton-ui/net/styles.css"` resolves
+- [ ] `import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net"` works
+- [ ] `import "@kerothebosa/ui-skeleton-net/styles.css"` resolves
 - [ ] Runtime behavior matches docs examples
 
 ## 4) Docs and Demo Validation
