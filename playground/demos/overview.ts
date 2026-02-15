@@ -170,7 +170,7 @@ export const mountOverviewDemo = (ctx = {}) => {
       <div class="control-grid control-grid-secondary">
         <label class="inline-field">
           Config URL
-          <input data-role="config-url" type="text" value="/config/default.json" />
+          <input data-role="config-url" type="text" value="./config/default.json" />
         </label>
         <button type="button" data-action="load-config-url">Load config URL</button>
         <button type="button" data-action="import-config">Import config JSON</button>
@@ -500,7 +500,7 @@ export const mountOverviewDemo = (ctx = {}) => {
 
   const exportCurrentConfig = () => {
     const payload = {
-      schema: "@skeleton-ui/net/playground-config",
+      schema: "@kerothebosa/ui-skeleton-net/playground-config",
       version: 1,
       generatedAt: new Date().toISOString(),
       playgroundConfig: ctx.getPlaygroundConfig()

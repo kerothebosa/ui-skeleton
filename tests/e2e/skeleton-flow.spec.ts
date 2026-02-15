@@ -8,7 +8,7 @@ test.describe("Skeleton flow fixtures", () => {
     await expect(page.locator("#content")).toHaveAttribute("data-skeleton-visible", "true");
     const overlay = page.locator('[data-skeleton-node="sknet-skeleton-node"]');
     await expect(overlay).toBeVisible();
-    await expect(overlay).toHaveCSS("background-image", /gradient/i);
+    await expect(overlay).toHaveClass(/sknet-skeleton-overlay/);
     await expect(page.locator("#status")).toContainText("Loaded data");
     await expect(page.locator("#content")).toHaveAttribute("data-skeleton-visible", "false");
   });

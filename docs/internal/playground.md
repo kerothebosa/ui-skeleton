@@ -19,6 +19,8 @@ Playground always imports from built output, not `src/`:
 - `../dist/styles.css`
 
 This ensures manual tests reflect published-bundle behavior.
+The playground also ships a browser-side mock API so it can run on static hosts
+like GitHub Pages without a Node backend.
 
 ## Route Suite
 
@@ -59,23 +61,23 @@ Behavior:
 Two supported flows:
 
 1. startup URL:
-   - `http://127.0.0.1:4174/?config=/config/default.json#/overview`
+   - `http://127.0.0.1:4174/?config=./config/default.json#/overview`
 2. runtime controls in `#/overview`:
    - load URL
    - import JSON file
    - export current JSON
    - reset defaults
 
-Sample files served by the playground server:
+Sample files bundled with the playground:
 
-- `/config/default.json`
-- `/config/adaptive-contrast.json`
+- `./config/default.json`
+- `./config/adaptive-contrast.json`
 
 Accepted payload shape:
 
 ```json
 {
-  "schema": "@skeleton-ui/net/playground-config",
+  "schema": "@kerothebosa/ui-skeleton-net/playground-config",
   "version": 1,
   "playgroundConfig": {
     "showDelayMs": 120,
@@ -112,5 +114,6 @@ This guarantees that when the enhancer reports `skeleton:show`, a visual skeleto
 
 From repo root:
 
-- `npm run playground` (build + start server)
+- `npm run demo:dev` (build package, run Vite demo server)
+- `npm run playground` (compatibility alias to `npm run demo:dev`)
 - open `http://127.0.0.1:4174/#/overview`

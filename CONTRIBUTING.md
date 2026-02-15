@@ -1,30 +1,38 @@
-# Contributing
+# Contributing to @kerothebosa/ui-skeleton-net
 
-This repository accepts public contributions for `@skeleton-ui/net`.
+Thanks for contributing.
 
-## Local Workflow
+## Start Here
 
 1. Install dependencies:
    - `npm ci`
-2. Run quality gates before opening a PR:
-   - `npm run lint`
-   - `npm run typecheck`
-   - `npm run test`
-   - `npm run test:e2e`
-3. Keep public API updates documented in:
-   - `README.md`
-   - `docs/api-reference.md`
+2. Run quality checks before opening a PR:
+   - `npm run ci`
 
-## Pull Request Expectations
+## Development Workflow
 
-- Preserve additive API compatibility when possible.
-- Add tests for every behavior change and edge case.
-- Keep request lifecycle and cleanup deterministic.
-- Prefer typed interfaces and avoid untyped event payloads.
+1. Build package output:
+   - `npm run build`
+2. Run local demo:
+   - `npm run demo:dev`
+3. Run docs locally:
+   - `npm run docs:dev`
+
+## Pull Requests
+
+- Keep changes focused and scoped.
+- Add or update tests for behavior changes.
+- Update docs when API, lifecycle, docs site, or demo behavior changes.
+- Fill out `.github/PULL_REQUEST_TEMPLATE.md`.
+
+## Release Notes and Changelog
+
+- Update `CHANGELOG.md` in the `Unreleased` section for user-facing changes.
+- Use semantic version tags (`vX.Y.Z`) for releases.
 
 ## Maintainer Docs
 
-Deep maintainer and release docs live in `docs/internal/`:
+Deep maintainer docs are under `docs/internal/`:
 
 - Architecture: `docs/internal/architecture.md`
 - Lifecycle and events: `docs/internal/lifecycle-and-events.md`
@@ -32,4 +40,4 @@ Deep maintainer and release docs live in `docs/internal/`:
 - Testing strategy: `docs/internal/testing.md`
 - Playground internals: `docs/internal/playground.md`
 - Real-world validation: `docs/internal/real-world-testing.md`
-- Release process: `docs/internal/release-checklist.md`
+- Release checklist: `docs/internal/release-checklist.md`

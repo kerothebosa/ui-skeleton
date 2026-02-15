@@ -1,4 +1,4 @@
-import { SkeletonEnhancer } from "@skeleton-ui/net";
+import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#app",

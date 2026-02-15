@@ -1,6 +1,7 @@
 # Documentation
 
-Public documentation for `@skeleton-ui/net`.
+Public documentation for `@kerothebosa/ui-skeleton-net`.
+Published docs site: `https://kerothebosa.github.io/ui-skeleton/`.
 
 ## Getting Started
 
@@ -20,3 +21,7 @@ Public documentation for `@skeleton-ui/net`.
 ## Contributing
 
 - Contributor guide: `../CONTRIBUTING.md`
+
+## Maintainer Docs
+
+- Internal implementation docs: `internal/`

@@ -7,14 +7,14 @@ export class Logger {
     }
 
     // Intentionally logs only in debug mode to aid library consumers.
-    console.info("[@skeleton-ui/net]", ...args);
+    console.info("[@kerothebosa/ui-skeleton-net]", ...args);
   }
 
   warn(...args: unknown[]): void {
-    console.warn("[@skeleton-ui/net]", ...args);
+    console.warn("[@kerothebosa/ui-skeleton-net]", ...args);
   }
 
   error(...args: unknown[]): void {
-    console.error("[@skeleton-ui/net]", ...args);
+    console.error("[@kerothebosa/ui-skeleton-net]", ...args);
   }
 }

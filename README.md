@@ -1,170 +1,123 @@
-# @skeleton-ui/net
+# @kerothebosa/ui-skeleton-net
 
-Framework-agnostic TypeScript library scaffold for enhancing network-driven UIs with skeleton loaders.
+Network-aware skeleton loading for modern web apps.  
+Patch `fetch` and `XMLHttpRequest`, then drive skeleton visibility from real request lifecycle with predictable timing controls and typed hooks.
 
-Full project docs live in `docs/README.md`.
-Maintainer workflow and release guidance live in `CONTRIBUTING.md`.
+[![CI](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml)
+[![Pages](https://github.com/kerothebosa/ui-skeleton/actions/workflows/pages.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/pages.yml)
+[![npm version](https://img.shields.io/npm/v/@kerothebosa/ui-skeleton-net.svg)](https://www.npmjs.com/package/@kerothebosa/ui-skeleton-net)
+[![bundle size](https://img.shields.io/bundlephobia/minzip/@kerothebosa/ui-skeleton-net)](https://bundlephobia.com/package/@kerothebosa/ui-skeleton-net)
+[![license](https://img.shields.io/npm/l/@kerothebosa/ui-skeleton-net.svg)](./LICENSE)
 
-## Status
+## Why This Package
 
-This repository is a production-ready template scaffold:
+Most loading UIs rely on scattered `isLoading` flags and drift away from actual network behavior.  
+`@kerothebosa/ui-skeleton-net` centralizes this at the transport layer and gives you consistent skeleton timing across your app.
 
-- Dual output (`ESM` + `CJS`) with generated `.d.ts` files
-- Strict TypeScript + ESLint + Prettier setup
-- Jest unit tests and Playwright E2E fixtures
-- GitHub Actions for CI and npm publishing
+### Highlights
 
-Core skeleton behavior includes adaptive placeholder rendering with overlay fallback.
+- Framework-agnostic runtime integration
+- Intercepts both `fetch` and `XMLHttpRequest`
+- Timing controls to reduce flicker (`showDelayMs`, `minVisibleMs`)
+- Typed lifecycle hooks for observability and analytics
+- Publish-ready distribution (`ESM`, `CJS`, `d.ts`, `styles.css`)
 
 ## Installation
 
 ```bash
-npm install @skeleton-ui/net
+npm install @kerothebosa/ui-skeleton-net
 ```
 
-## Styling
-
-This package ships default overlay styles, but you must import them explicitly:
+## Quick Start
 
 ```ts
-import "@skeleton-ui/net/styles.css";
-```
-
-## Quick Usage
-
-```ts
-import { SkeletonEnhancer } from "@skeleton-ui/net";
-import "@skeleton-ui/net/styles.css";
+import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#content",
-  skeletonVisuals: {
-    mode: "hybrid",
-    animation: "wave",
-    theme: "cool"
-  },
-  timeoutMode: "abort",
   showDelayMs: 120,
   minVisibleMs: 180,
-  requestTimeoutMs: 15_000,
-  hooks: {
-    onRequestStart: ({ url }) => console.log("request:start", url),
-    onRequestEnd: ({ url, status }) => console.log("request:end", url, status)
-  }
+  requestTimeoutMs: 10_000,
+  timeoutMode: "abort",
+  enabledInterceptors: ["fetch", "xhr"]
 });
 
 enhancer.start();
 ```
 
-## API Snapshot
+### Styling Requirement
+
+The stylesheet is not auto-injected by bundlers. Import it explicitly:
 
 ```ts
-type SkeletonEnhancerOptions = {
-  skeletonSelector?: string;
-  skeletonClassName?: string;
-  overlayClassName?: string;
-  skeletonVisuals?: {
-    mode?: "overlay" | "adaptive" | "hybrid";
-    animation?: "shimmer" | "wave" | "pulse" | "breathe" | "none";
-    theme?:
-      | "classic"
-      | "cool"
-      | "warm"
-      | "contrast"
-      | {
-          baseColor: string;
-          highlightColor: string;
-          durationMs?: number;
-          easing?: string;
-        };
-    adaptive?: {
-      maxDepth?: number;
-      maxPlaceholders?: number;
-      minBlockHeightPx?: number;
-      lineGapPx?: number;
-      ignoreSelectors?: string[];
-    };
-  };
-  requestTimeoutMs?: number;
-  timeoutMode?: "abort" | "synthetic";
-  showDelayMs?: number;
-  minVisibleMs?: number;
-  enabledInterceptors?: Array<"fetch" | "xhr">;
-  shouldHandleRequest?: (ctx: {
-    url: string;
-    method: string;
-    source: "fetch" | "xhr" | string;
-  }) => boolean;
-  debug?: boolean;
-  hooks?: SkeletonEnhancerHooks;
-};
-
-class SkeletonEnhancer {
-  start(): void;
-  stop(): void;
-  destroy(): void;
-  on(event, handler): SkeletonEnhancer;
-  off(event, handler): SkeletonEnhancer;
-  registerInterceptor(interceptor): SkeletonEnhancer;
-  unregisterInterceptor(name: string): SkeletonEnhancer;
-  isRunning(): boolean;
-}
+import "@kerothebosa/ui-skeleton-net/styles.css";
 ```
 
-## Browser / Runtime Support
+## Configuration At A Glance
 
-- Node.js `>=18` for tooling and tests
-- Modern browsers with `fetch` and `XMLHttpRequest` support
-- Styling is not zero-config: import `@skeleton-ui/net/styles.css`
+| Option | Type | Purpose |
+| --- | --- | --- |
+| `showDelayMs` | `number` | Delay skeleton reveal to avoid flashing on fast requests. |
+| `minVisibleMs` | `number` | Keep skeleton visible long enough for stable perceived UX. |
+| `requestTimeoutMs` | `number` | Timeout threshold for request lifecycle handling. |
+| `timeoutMode` | `"abort" \| "synthetic"` | Abort transport or only finalize UI lifecycle. |
+| `enabledInterceptors` | `Array<"fetch" \| "xhr">` | Select observed network transports. |
+| `skeletonVisuals` | `object` | Visual mode, animation, theme, and adaptive placeholder behavior. |
 
-## Scripts
+Full options and types:  
+https://kerothebosa.github.io/ui-skeleton/api-reference
 
-| Script                | Purpose                                        |
-| --------------------- | ---------------------------------------------- |
-| `npm run build`       | Build `dist/` as ESM + CJS + declaration files |
-| `npm run playground`  | Build package and start local playground server |
-| `npm run playground:start` | Start playground server (expects built `dist/`) |
-| `npm run build:watch` | Build in watch mode                            |
-| `npm run lint`        | Run ESLint with zero warnings                  |
-| `npm run typecheck`   | Run strict TypeScript checks                   |
-| `npm run test`        | Run Jest unit tests with coverage              |
-| `npm run test:e2e`    | Build and run Playwright E2E tests             |
-| `npm run test:all`    | Run unit + E2E test suites                     |
-| `npm run ci`          | Full local CI sequence                         |
+## Events And Hooks Example
 
-## Testing
-
-Unit tests:
-
-```bash
-npm run test
+```ts
+const enhancer = new SkeletonEnhancer({
+  hooks: {
+    onRequestStart: ({ requestId, method, url }) =>
+      console.log("request:start", requestId, method, url),
+    onRequestEnd: ({ requestId, status, durationMs }) =>
+      console.log("request:end", requestId, status, durationMs),
+    onSkeletonShow: ({ requestId }) => console.log("skeleton:show", requestId),
+    onSkeletonHide: ({ requestId }) => console.log("skeleton:hide", requestId),
+    onError: ({ requestId, error }) => console.error("error", requestId, error.message)
+  }
+});
 ```
 
-E2E tests:
+## Demo
 
-```bash
-npm run test:e2e
-```
+- Live demo: https://kerothebosa.github.io/ui-skeleton/demo/
+- Local demo dev: `npm run demo:dev`
+- Local demo preview: `npm run demo:preview`
 
-Playground manual QA:
+## Documentation
 
-```bash
-npm run playground
-```
+- Docs homepage: https://kerothebosa.github.io/ui-skeleton/
+- Architecture: https://kerothebosa.github.io/ui-skeleton/architecture
+- Lifecycle & Events: https://kerothebosa.github.io/ui-skeleton/lifecycle-and-events
+- API Reference: https://kerothebosa.github.io/ui-skeleton/api-reference
+- Interceptors: https://kerothebosa.github.io/ui-skeleton/interceptors
+- Testing: https://kerothebosa.github.io/ui-skeleton/testing
+- Playground: https://kerothebosa.github.io/ui-skeleton/playground
+- Real-World Testing: https://kerothebosa.github.io/ui-skeleton/real-world-testing
+- Internal docs index: `docs/README.md`
 
-## Publishing
+## Browser And Runtime Support
 
-1. Update version in `package.json`.
-2. Commit and push to `main`.
-3. Create and push a semantic version tag:
-   ```bash
-   git tag v0.1.0
-   git push origin v0.1.0
-   ```
-4. GitHub Actions publishes to npm using `NPM_TOKEN`.
+- Modern browsers with `fetch` and `XMLHttpRequest`
+- Node.js `>=18` for tooling, CI, and local docs/demo builds
 
-## Contributing
+## Development Scripts
 
-1. Install dependencies with `npm ci`.
-2. Run `npm run ci` before opening a PR.
-3. Keep public API additions typed and documented in this README.
+- `npm run build` - Build package outputs (`dist/`)
+- `npm run demo:dev` - Run local playground demo
+- `npm run docs:dev` - Run VitePress docs locally
+- `npm run ci` - Lint + typecheck + tests + e2e + pack check
+
+## Project Standards
+
+- Contributing: `CONTRIBUTING.md`
+- Code of Conduct: `CODE_OF_CONDUCT.md`
+- Security: `SECURITY.md`
+- Changelog: `CHANGELOG.md`
+- License: `LICENSE`

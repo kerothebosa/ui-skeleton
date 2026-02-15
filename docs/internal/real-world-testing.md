@@ -1,6 +1,6 @@
 # Real-World Testing Guide
 
-Use this guide to validate `@skeleton-ui/net` in a real application before release.
+Use this guide to validate `@kerothebosa/ui-skeleton-net` in a real application before release.
 
 ## 1) Install The Package Like A Consumer
 
@@ -14,14 +14,14 @@ npm pack
 In a separate app project, install the tarball:
 
 ```bash
-npm install ../ui-skeleton/skeleton-ui-net-0.1.0.tgz
+npm install ../ui-skeleton/kerothebosa-ui-skeleton-net-0.1.0.tgz
 ```
 
 ## 2) Minimal Integration In A Real App
 
 ```ts
-import { SkeletonEnhancer } from "@skeleton-ui/net";
-import "@skeleton-ui/net/styles.css";
+import { SkeletonEnhancer } from "@kerothebosa/ui-skeleton-net";
+import "@kerothebosa/ui-skeleton-net/styles.css";
 
 const enhancer = new SkeletonEnhancer({
   skeletonSelector: "#app-content",
@@ -99,7 +99,7 @@ Then re-test the installed tarball in a real app once more.
 Run side-by-side manual QA before publish:
 
 ```bash
-npm run playground
+npm run demo:dev
 ```
 
 Then validate route scenarios at `http://127.0.0.1:4174/#/overview`:
@@ -107,4 +107,4 @@ Then validate route scenarios at `http://127.0.0.1:4174/#/overview`:
 1. `with package` side shows skeletons/animations
 2. `without package` side remains blank/pop-in during loading
 3. overview preset/config changes affect all tabs
-4. config bootstrapping works from URL (`?config=/config/default.json`)
+4. config bootstrapping works from URL (`?config=./config/default.json`)

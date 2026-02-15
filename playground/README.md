@@ -3,7 +3,7 @@
 This directory is a demo-only app used for manual QA against built artifacts in `dist/`.
 Each route renders side-by-side labs:
 
-- left: with `@skeleton-ui/net`
+- left: with `@kerothebosa/ui-skeleton-net`
 - right: same UI and requests without enhancer
 
 It intentionally imports:
@@ -12,13 +12,14 @@ It intentionally imports:
 - `../dist/styles.css`
 
 so behavior mirrors published-bundle usage, not `src/` internals.
+For static-host compatibility (GitHub Pages), API calls are handled by an in-browser mock layer.
 
 ## Run
 
 From repo root:
 
 ```bash
-npm run playground
+npm run demo:dev
 ```
 
 Then open:
@@ -68,7 +69,7 @@ You can also adjust advanced controls:
 Real-life style config-driven usage is available in two ways:
 
 1. Startup from URL query:
-   - `http://127.0.0.1:4174/?config=/config/default.json#/overview`
+   - `http://127.0.0.1:4174/?config=./config/default.json#/overview`
 2. Runtime from Overview controls:
    - `Load config URL` (for hosted JSON files)
    - `Import config JSON` (local file upload)
@@ -77,8 +78,8 @@ Real-life style config-driven usage is available in two ways:
 
 Sample files:
 
-- `/config/default.json`
-- `/config/adaptive-contrast.json`
+- `./config/default.json`
+- `./config/adaptive-contrast.json`
 
 ## API Endpoints Used
 
