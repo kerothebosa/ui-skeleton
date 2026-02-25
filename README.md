@@ -2,7 +2,7 @@
 
 Network-aware skeleton loading for modern web apps.  
 Patch `fetch` and `XMLHttpRequest`, then drive skeleton visibility from real request lifecycle with predictable timing controls and typed hooks.
-
+[![npm downloads](https://img.shields.io/npm/dt/@kerothebosa/ui-skeleton-net)](https://www.npmjs.com/package/@kerothebosa/ui-skeleton-net)
 [![CI](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/ci.yml)
 [![Pages](https://github.com/kerothebosa/ui-skeleton/actions/workflows/pages.yml/badge.svg)](https://github.com/kerothebosa/ui-skeleton/actions/workflows/pages.yml)
 [![npm version](https://img.shields.io/npm/v/@kerothebosa/ui-skeleton-net.svg)](https://www.npmjs.com/package/@kerothebosa/ui-skeleton-net)
